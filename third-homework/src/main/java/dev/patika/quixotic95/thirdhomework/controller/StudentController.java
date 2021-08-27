@@ -85,8 +85,8 @@ public class StudentController {
 
     // add mapping for GET student(s) by their name
     @GetMapping("/students/byName")
-    public List<Student> findStudentsByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
-        return studentService.findStudentsByFirstNameAndLastName(firstName, lastName);
+    public ResponseEntity<?> findStudentsByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
+        return new ResponseEntity<>(studentService.findStudentsByFirstNameAndLastName(firstName, lastName), HttpStatus.OK);
     }
 
     @GetMapping("/students/groupByGender")
@@ -96,7 +96,7 @@ public class StudentController {
 
     @DeleteMapping("/students/byName")
     public ResponseEntity<String> deleteStudentByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
-        if (findStudentsByFirstNameAndLastName(firstName, lastName).isEmpty()) {
+        if (studentService.findStudentsByFirstNameAndLastName(firstName, lastName).isEmpty()) {
             return new ResponseEntity<>("Student with name: " + firstName + " " + lastName + " not found.", HttpStatus.BAD_REQUEST);
         } else {
             studentService.deleteStudentByFirstNameAndLastName(firstName, lastName);
