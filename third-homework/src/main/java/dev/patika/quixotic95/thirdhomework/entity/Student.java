@@ -23,7 +23,7 @@ public class Student extends Person {
     private LocalDate birthDate;
     private Gender gender;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "student_course",
             joinColumns = {@JoinColumn(name = "student_id")},
