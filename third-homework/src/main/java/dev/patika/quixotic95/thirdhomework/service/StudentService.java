@@ -6,31 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class StudentService {
 
-    StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    @Transactional
     public boolean existsById(int studentId) {
         return studentRepository.existsById(studentId);
     }
 
-    @Transactional
     public List<Student> findAllStudents() {
         return (List<Student>) studentRepository.findAll();
     }
 
-    @Transactional
     public Optional<Student> findStudentById(int studentId) {
         return studentRepository.findById(studentId);
     }
@@ -50,18 +47,17 @@ public class StudentService {
         studentRepository.deleteById(studentId);
     }
 
-    @Transactional
     public List<Student> findStudentsByFirstNameAndLastName(String firstName, String lastName) {
         return studentRepository.findStudentsByFirstNameAndLastName(firstName, lastName);
     }
 
-    @Transactional
     public List<?> getStudentsGendersWithGrouping() {
         return studentRepository.getStudentsGendersWithGrouping();
     }
 
     @Transactional
-    public void deleteStudentByFirstNameAndLastName(String firstName, String lastName) {
-        studentRepository.deleteStudentByFirstNameAndLastName(firstName, lastName);
+    public void deleteStudentsByFirstNameAndLastName(String firstName, String lastName) {
+        studentRepository.deleteStudentsByFirstNameAndLastName(firstName, lastName);
     }
+
 }

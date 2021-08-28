@@ -6,7 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Integer> {
@@ -16,6 +15,6 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
     @Query("select s.gender, count(s.gender) from Student s GROUP BY s.gender")
     List<?> getStudentsGendersWithGrouping();
 
-    void deleteStudentByFirstNameAndLastName(String firstName, String lastName);
+    void deleteStudentsByFirstNameAndLastName(String firstName, String lastName);
 
 }

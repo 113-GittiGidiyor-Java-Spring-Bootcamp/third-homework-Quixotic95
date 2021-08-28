@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,7 +27,7 @@ public class StudentController {
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
 
-    // add mapping for GET /students/{studentId} to get a student by id
+    // mapping for GET /students/{studentId} to get a student by id
     @GetMapping("/students/{studentId}")
     public ResponseEntity<?> findStudentById(@PathVariable int studentId) {
         Optional<Student> foundStudent = studentService.findStudentById(studentId);
@@ -39,7 +38,7 @@ public class StudentController {
         }
     }
 
-    // add mapping for POST /students - add new student
+    // mapping for POST /students - add new student
     @PostMapping("/students")
     public ResponseEntity<?> saveStudent(@RequestBody Student student) {
         int studentId = student.getId();
@@ -50,7 +49,7 @@ public class StudentController {
         }
     }
 
-    // add mapping for PUT /students - update existing student
+    // mapping for PUT /students - update existing student
     @PutMapping("/students")
     public ResponseEntity<?> updateStudent(@RequestBody Student student) {
         if (studentService.existsById(student.getId())) {
@@ -60,7 +59,7 @@ public class StudentController {
         }
     }
 
-    // add mapping for DELETE /students - delete student
+    // mapping for DELETE /students - delete student
     @DeleteMapping("/students")
     public ResponseEntity<String> deleteStudent(@RequestBody Student student) {
         int studentId = student.getId();
@@ -72,9 +71,9 @@ public class StudentController {
         }
     }
 
-    // add mapping for DELETE /students/{studentId} - delete student by id
+    // mapping for DELETE /students/{studentId} - delete student by id
     @DeleteMapping("/students/{studentId}")
-    public ResponseEntity<String> deleteStudent(@PathVariable int studentId) {
+    public ResponseEntity<String> deleteStudentById(@PathVariable int studentId) {
         if (studentService.existsById(studentId)) {
             studentService.deleteStudentById(studentId);
             return new ResponseEntity<>("Student with id: " + studentId + " deleted", HttpStatus.OK);
@@ -83,24 +82,26 @@ public class StudentController {
         }
     }
 
-    // add mapping for GET student(s) by their name
+    // mapping for GET student(s) by their name
     @GetMapping("/students/byName")
     public ResponseEntity<?> findStudentsByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
         return new ResponseEntity<>(studentService.findStudentsByFirstNameAndLastName(firstName, lastName), HttpStatus.OK);
     }
 
+    // mapping for GET students grouped and counted by gender
     @GetMapping("/students/groupByGender")
     public ResponseEntity<?> getStudentsGendersWithGrouping() {
         return new ResponseEntity<>(studentService.getStudentsGendersWithGrouping(), HttpStatus.OK);
     }
 
+    // mapping for DELETE student(s) by name
     @DeleteMapping("/students/byName")
-    public ResponseEntity<String> deleteStudentByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
+    public ResponseEntity<String> deleteStudentsByFirstNameAndLastName(@RequestParam String firstName, @RequestParam String lastName) {
         if (studentService.findStudentsByFirstNameAndLastName(firstName, lastName).isEmpty()) {
             return new ResponseEntity<>("Student with name: " + firstName + " " + lastName + " not found.", HttpStatus.BAD_REQUEST);
         } else {
-            studentService.deleteStudentByFirstNameAndLastName(firstName, lastName);
-            return new ResponseEntity<>("Student with name: " + firstName + " " + lastName + " deleted.", HttpStatus.OK);
+            studentService.deleteStudentsByFirstNameAndLastName(firstName, lastName);
+            return new ResponseEntity<>("Student(s) with name: " + firstName + " " + lastName + " deleted.", HttpStatus.OK);
         }
     }
 
