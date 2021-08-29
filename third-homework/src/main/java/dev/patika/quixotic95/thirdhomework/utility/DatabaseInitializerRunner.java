@@ -124,13 +124,32 @@ public class DatabaseInitializerRunner implements CommandLineRunner {
                 .courseName("Turkish Language - 1")
                 .courseCode("TDL1001")
                 .creditScore(2)
-                .courseInstructor(permanentInstructorRepository.save(PermanentInstructor.builder()
-                        .firstName("Koray")
-                        .lastName("Güney")
-                        .address("İstanbul, Turkey")
-                        .phoneNumber("05555855995")
-                        .fixedSalary(12000)
-                        .build()))
+                .build());
+
+        courseRepository.save(Course.builder()
+                .courseName("Ataturk’s Principles and Turkish Revolution History")
+                .courseCode("ATA1001")
+                .creditScore(3)
+                .build());
+
+        courseRepository.save(Course.builder()
+                .courseName("Basic Art Education")
+                .courseCode("MTP1001")
+                .creditScore(4)
+                .build());
+
+        courseRepository.save(Course.builder()
+                .courseName("Fashion Picture and Illustration")
+                .courseCode("MTP1005")
+                .creditScore(5)
+                .build());
+
+        permanentInstructorRepository.save(PermanentInstructor.builder()
+                .firstName("Koray")
+                .lastName("Güney")
+                .address("İstanbul, Turkey")
+                .phoneNumber("05555855995")
+                .fixedSalary(12000)
                 .build());
 
         permanentInstructorRepository.save(PermanentInstructor.builder()
