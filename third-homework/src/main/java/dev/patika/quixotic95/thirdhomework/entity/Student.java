@@ -16,10 +16,6 @@ import java.util.Set;
 @SuperBuilder
 public class Student extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private LocalDate birthDate;
     private Gender gender;
 

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -14,6 +17,10 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor
 @SuperBuilder
 public abstract class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @NonNull
     private String firstName;

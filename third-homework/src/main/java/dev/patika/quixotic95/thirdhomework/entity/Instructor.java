@@ -9,17 +9,13 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public abstract class Instructor extends Person {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private int id;
+public class Instructor extends Person {
 
     private String phoneNumber;
 
