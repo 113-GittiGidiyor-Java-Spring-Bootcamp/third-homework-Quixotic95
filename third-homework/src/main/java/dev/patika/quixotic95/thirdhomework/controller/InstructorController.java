@@ -29,7 +29,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructorService.findAllInstructors(), HttpStatus.OK);
     }
 
-    // mapping for GET /instructors/{instructorId} to get a instructor by id
+    // mapping for GET /instructors/{instructorId} to get an instructor by id
     @GetMapping("/instructors/{instructorId}")
     public ResponseEntity<?> findInstructorById(@PathVariable int instructorId) {
         Optional<Instructor> foundInstructor = instructorService.findInstructorById(instructorId);
@@ -160,25 +160,25 @@ public class InstructorController {
         }
     }
 
-    // mapping for GET top 3 permanent instructors with highest salary.
+    // mapping for GET top 3 permanent instructors with the highest salary.
     @GetMapping("/instructors/permanentInstructor/top3")
     public ResponseEntity<?> findFirst3PermanentInstructorsByOrderByFixedSalaryDesc() {
         return new ResponseEntity<>(instructorService.findFirst3PermanentInstructorsByOrderByFixedSalaryDesc(), HttpStatus.OK);
     }
 
-    // mapping for GET top 3 permanent instructors with lowest salary.
+    // mapping for GET top 3 permanent instructors with the lowest salary.
     @GetMapping("/instructors/permanentInstructor/last3")
     public ResponseEntity<?> findFirst3PermanentInstructorsByOrderByFixedSalaryAsc() {
         return new ResponseEntity<>(instructorService.findFirst3PermanentInstructorsByOrderByFixedSalaryAsc(), HttpStatus.OK);
     }
 
-    // mapping for GET top 3 visiting researchers with highest salary.
+    // mapping for GET top 3 visiting researchers with the highest salary.
     @GetMapping("/instructors/visitingResearcher/top3")
     public ResponseEntity<?> findFirst3VisitingResearchersByOrderByHourlySalaryDesc() {
         return new ResponseEntity<>(instructorService.findFirst3VisitingResearchersByOrderByHourlySalaryDesc(), HttpStatus.OK);
     }
 
-    // mapping for GET top 3 visiting researchers with lowest salary.
+    // mapping for GET top 3 visiting researchers with the lowest salary.
     @GetMapping("/instructors/visitingResearcher/last3")
     public ResponseEntity<?> findFirst3VisitingResearchersByOrderByHourlySalaryAsc() {
         return new ResponseEntity<>(instructorService.findFirst3VisitingResearchersByOrderByHourlySalaryAsc(), HttpStatus.OK);
